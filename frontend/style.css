@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@100;200;300;400;600;800&display=swap');
+
+/* * {
+    font-family: Istok Web;
+} */
+
+.root_container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(102deg, #FAFAFF 41.19%, rgba(250, 250, 255, 0.00) 90.26%);
+}
+
+.inner_container {
+    width: 30vw;
+    margin: 0;
+    z-index: 1;
+}
+
+.logo_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.inner_container input {
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: #FFFAFA;
+    padding: .5rem;
+    font-weight: 700;
+}
+.inner_container input::placeholder {
+    color: #999; /* Change this color to your desired placeholder color */
+}
+.inner_container select {
+    color: #999;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: #FFFAFA;
+    padding: .5rem;
+    font-weight: 700;
+}
+
+
+
+
+
+.logo_container>img {
+    height: 15vw;
+}
+
+
+.logo_container span {
+    color: #DE265E;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.logo_container>h1 {
+    color: #000000;
+    font-family: Istok Web;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 1rem;
+}
+.svg_container{
+    position: absolute;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(1.1);
+}
+
+
+.svg_container img{
+    position: absolute;
+}
+
+.svg_container svg{
+    height: 100vh;
+}
+
+
+
+
+.container_button {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background: #2525AD;
+    font-weight: bold;
+    padding: .5rem;
+}
+
+@media (max-width: 425px) {
+
+    /* Set the width to 100% for devices with width less than 425px */
+    .inner_container {
+        width: 100vw;
+    }
+    .svg_container{
+        display: none;
+    }
+   
+
+    /* Add any other styles or adjustments specific to smaller screens */
+}
+
+/* Media query for screens with a width between 426px and 768px */
+@media (min-width: 426px) and (max-width: 768px) {
+
+    /* Set the width to 50% for devices with width between 426px and 768px */
+    .inner_container {
+        width: 80vw;
+    }
+    .svg_container{
+        display: none;
+    }
+   
+
+    /* Add any other styles or adjustments specific to screens in this range */
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    /* Set the width to 50% for devices with width between 426px and 768px */
+    .inner_container {
+        width: 50vw;
+    }
+    .svg_container{
+        right: -20rem;
+    }
+
+    /* Add any other styles or adjustments specific to screens in this range */
+}
+@media (min-width: 1025px) and (max-width: 1440px) {
+
+    /* Set the width to 50% for devices with width between 426px and 768px */
+    .inner_container {
+        width: 40vw;
+    }
+    .svg_container{
+        right: -10rem;
+    }
+
+    /* Add any other styles or adjustments specific to screens in this range */
+}
+@media (min-width: 1445px) {
+
+    /* Set the width to 50% for devices with width between 426px and 768px */
+    .inner_container {
+        width: 30vw;
+    }
+    .svg_container{
+        right: -10rem;
+    }
+
+   
+    /* Add any other styles or adjustments specific to screens in this range */
+}
