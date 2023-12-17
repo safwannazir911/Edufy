@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import List
 
 
@@ -14,15 +14,15 @@ class PostsList(BaseModel):
 
 class RegisterUserSchema(BaseModel):
     name: str
-    email: str
+    email: EmailStr
     password: str
 
     class Config:
         schema_extra = {
             "example": {
-                "name": "Bee Bee Wijaya",
-                "email": "beebeewijaya@gmail.com",
-                "password": "test-password"
+                "name": "aasim",
+                "email": "aasim@gmail.com",
+                "password": "aasim123"
             }
         }
 
