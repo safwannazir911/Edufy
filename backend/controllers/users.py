@@ -1,3 +1,4 @@
+from fastapi import Depends
 from sqlalchemy.orm import Session
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from models.users import UsersModel
@@ -5,27 +6,43 @@ from schema.users import RegisterUserSchema
 from utils.password import Hash
 from utils.error import raise_exception
 from services import users as users_service, auth as auth_service
+from db.connection import get_db
+
+def create_user(user: RegisterUserSchema, db: Session = Depends(get_db)):
+
+    existing_user_by_email = users_service.get_user_by_email_service(user.email, db)
+    existing_user_by_username = users_service.get_user_by_username_service(user.name, db)
+
+    if existing_user_by_email:
+        raise raise_exception("User with this email already exists", 400)
+
+    if existing_user_by_username:
+        raise raise_exception("User with this username already exists", 400)
 
 
-def create_user(user: RegisterUserSchema, db: Session):
-    um = UsersModel()
-    um.email = user.email
-    um.username = user.name
-    um.password = Hash.hash_password(user.password)
+    user_model = UsersModel(
+        email=user.email,
+        username=user.name,
+        password=Hash.hash_password(user.password)
+    )
 
-    data = users_service.create_user_service(um, db)
+    data = users_service.create_user_service(user_model, db)
     return data
 
 
-def login_user(form: OAuth2PasswordRequestForm, db: Session):
-    user = UsersModel()
-    user.email = form.username
-    user.password = form.password
-    um = users_service.get_user_service(user, db)
-    if not user:
-        raise raise_exception("user not found", 400)
-    if not Hash.verify_password(user.password, um.password):
-        raise raise_exception("incorrect password", 401)
+def login_user(form: OAuth2PasswordRequestForm, db: Session = Depends(get_db)):
+    user_model = UsersModel(
+        username=form.username,  # used username to login
+        password=form.password
+    )
+
+    um = users_service.get_user_by_username_service(user_model.username, db)
+
+    if not um:
+        raise raise_exception("User not found", 404)
+
+    if not Hash.verify_password(form.password, um.password):
+        raise raise_exception("Incorrect password", 401)
 
     response = {
         "sub": um.email,
@@ -37,6 +54,7 @@ def login_user(form: OAuth2PasswordRequestForm, db: Session):
     return {
         "user": response,
         "access_token": token,
-        "message": "Successfully login",
+        "message": "Successfully logged in",
         "token_type": "bearer"
     }
+
