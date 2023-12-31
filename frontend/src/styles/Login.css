@@ -12,14 +12,15 @@ body {
   flex: 60%;
   background-image: url("../assets/backgrounds/Ellipse35.png");
   background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 .svg-container {
-  width: 70%;
-  height: 70%;
+  width: 50%;
+  height: 50%;
   background-image: url("../assets/logo/heroLogo.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -36,10 +37,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-.p-logo > img {
-  width: 15vw;
-  height: 30vh;
-}
+
 .p-logo-text {
   font-family: "Istok Web";
   font-size: 3.5em;
@@ -57,7 +55,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 50%;
+  width: 70%;
 }
 .form-in-common {
   margin-top: 2em;
@@ -96,4 +94,34 @@ body {
 .l-msg > span {
   font-weight: bold;
   text-decoration: underline;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 1200px) {
+  .svg-container {
+    width: 50%;
+    height: 50%;
+  }
+  .p-logo > img {
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .r-svg-container {
+    visibility: hidden;
+  }
+  .p-logo > img {
+    width: 30%;
+  }
+  .l-form > form {
+    width: 70%;
+  }
+  .login-container {
+    margin-top: 10%;
+  }
 }
