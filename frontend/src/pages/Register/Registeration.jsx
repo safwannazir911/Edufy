@@ -1,11 +1,11 @@
-// RegistrationForm.js
+// Registration.js
 import { useState } from 'react';
 import axios from 'axios'
-import logoImage from '../assets/images/93c2a468103088e7c8d8d89b8350029b.png';
-import svgImage from '../assets/images/aa3d6e7d5ea897d6cabaae5b2f86ca96.png';
+import logoImage from '../../assets/images/93c2a468103088e7c8d8d89b8350029b.png';
+import svgImage from '../../assets/images/aa3d6e7d5ea897d6cabaae5b2f86ca96.png';
 
 
-const RegistrationForm = () => {
+const Registration = () => {
     const [formData, setFormData] = useState({
         role: '',
         email: '',
@@ -144,4 +144,4 @@ const RegistrationForm = () => {
     );
 };
 
-export default RegistrationForm;
+export default Registration;
