@@ -1,19 +1,19 @@
-// Registration.js
 import { useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import logoImage from '../../assets/images/93c2a468103088e7c8d8d89b8350029b.png';
 import svgImage from '../../assets/images/aa3d6e7d5ea897d6cabaae5b2f86ca96.png';
-
 
 const Registration = () => {
     const [formData, setFormData] = useState({
         role: '',
         email: '',
-        fullName: '',
+        name: '', // Change 'fullName' to 'name'
         password: '',
         confirmPassword: '',
     });
-    const [errorMessage, setErrorMessage] = useState(null); // New state for error message
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(null);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -26,34 +26,31 @@ const Registration = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:3000/register', formData);
+            const response = await axios.post('http://127.0.0.1:8000/users/register', formData);
             console.log('Server response:', response.data);
-            // If successful, you might want to redirect or show a success message
+            // If successful, show success message
+            setSuccessMessage('Registration successful!'); // Add this line
+            setErrorMessage(null); // Reset error message
         } catch (error) {
             // Handle errors
-            if (error.response && error.response.data && error.response.data.message) {
-                // If the server returns a custom error message
-                setErrorMessage(error.response.data.message);
+            if (error.response && error.response.status === 400 && error.response.data && error.response.data.detail) {
+                // If the server returns a 400 status with a detail message
+                setErrorMessage(error.response.data.detail);
             } else {
-                // If there's no custom error message, show a generic one
+                // If there's no custom error message or it's not a 400 status, show a generic one
                 setErrorMessage('An error occurred while processing your request.');
             }
+            setSuccessMessage(null); // Reset success message
         }
     };
 
     return (
         <div className='root_container'>
             <div className='svg_container'>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="897" height="1024" viewBox="0 0 897 1024" fill="none">
-                        <path d="M967 187.595C1074 1161.44 1239.34 1058.54 189.34 1025.44C-201.36 1013.13 133.991 783.467 133.991 484.973C133.991 186.48 -201.554 -5.05912 189.34 -5.05912C1084.5 -5.05895 1004.5 -77.0624 967 187.595Z" fill="url(#paint0_linear_1_19)" />
-                        <defs>
-                            <linearGradient id="paint0_linear_1_19" x1="523.156" y1="-13.9999" x2="1928.5" y2="421.5" gradientUnits="userSpaceOnUse">
-                                <stop stopColor="#5050A5" />
-                                <stop offset="1" stopColor="#42868F" stopOpacity="0" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    <img src={svgImage} alt="Logo" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="897" height="1024" viewBox="0 0 897 1024" fill="none">
+                    {/* SVG path and linear gradient definitions */}
+                </svg>
+                <img src={svgImage} alt="Logo" />
             </div>
             <div className="container mt-4 inner_container">
                 <div className='container logo_container'>
@@ -76,7 +73,6 @@ const Registration = () => {
                         </select>
                     </div>
                     <div className="mb-3">
-
                         <input
                             type="email"
                             className="form-control"
@@ -88,19 +84,17 @@ const Registration = () => {
                         />
                     </div>
                     <div className="mb-3">
-
                         <input
                             type="text"
                             className="form-control"
-                            name="fullName"
-                            value={formData.fullName}
+                            name="name"  // Change 'fullName' to 'name'
+                            value={formData.name}  // Change 'fullName' to 'name'
                             onChange={handleChange}
-                            placeholder='Full name'
+                            placeholder='username'
                             required
                         />
                     </div>
                     <div className="mb-3">
-
                         <input
                             type="password"
                             className="form-control"
@@ -112,7 +106,6 @@ const Registration = () => {
                         />
                     </div>
                     <div className="mb-3">
-
                         <input
                             type="password"
                             className="form-control"
@@ -128,19 +121,19 @@ const Registration = () => {
                             {errorMessage}
                         </div>
                     )}
+                    {successMessage && (
+                        <div className="alert alert-success mt-3" role="alert">
+                            {successMessage}
+                        </div>
+                    )}
                     <div className="mb-3">
                         <button type="submit" className="btn btn-primary container_button">
                             Register
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
-
-
-
-
     );
 };
 
