@@ -63,7 +63,7 @@ const Login = (props) => {
                 Sign in
               </button>
               <div className="l-msg">
-                Not Registered? <span className="">Register Now</span>
+                Not Registered? <a href="/register"><span className="">Register Now</span></a>
               </div>
             </form>
           </div>

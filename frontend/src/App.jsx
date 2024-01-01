@@ -18,6 +18,7 @@ const App = () => {
       </Link> */}
 
       <Routes>
+        <Route path="/" element={<Login />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Registeration />}></Route>
       </Routes>
