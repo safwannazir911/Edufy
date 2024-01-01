@@ -4,6 +4,8 @@ backend/*.py[cod]
 backend/*$py.class
 backend/venv/
 backend/.idea/
+backend/.venv/
+backend/.env
 
 # C extensions
 backend/*.so
