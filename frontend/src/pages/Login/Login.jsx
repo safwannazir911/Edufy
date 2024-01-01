@@ -38,7 +38,7 @@ const Login = (props) => {
       alert("Login successful");
     } catch (error) {
       console.error("Login failed:", error);
-      setErrorMessage("Error Occurred. Please try again.");
+      setErrorMessage("Invaild Username or Password");
     }
   };
 
