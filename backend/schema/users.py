@@ -1,8 +1,13 @@
 from pydantic import BaseModel, EmailStr
 from typing import List
+from enum import Enum
 
 
-# PostsLists getting consumed by users schema
+class UserRole(str, Enum):
+    student = "student"
+    teacher = "teacher"
+
+
 class PostsList(BaseModel):
     title: str
     body: str
@@ -13,6 +18,7 @@ class PostsList(BaseModel):
 
 
 class RegisterUserSchema(BaseModel):
+    role: UserRole
     name: str
     email: EmailStr
     password: str
@@ -20,6 +26,7 @@ class RegisterUserSchema(BaseModel):
     class Config:
         schema_extra = {
             "example": {
+                "role": "student",
                 "name": "aasim",
                 "email": "aasim@gmail.com",
                 "password": "aasim123"

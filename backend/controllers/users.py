@@ -21,6 +21,7 @@ def create_user(user: RegisterUserSchema, db: Session = Depends(get_db)):
 
 
     user_model = UsersModel(
+        role = user.role,
         email=user.email,
         username=user.name,
         password=Hash.hash_password(user.password)
@@ -47,7 +48,8 @@ def login_user(form: OAuth2PasswordRequestForm, db: Session = Depends(get_db)):
     response = {
         "sub": um.email,
         "username": um.username,
-        "user_id": um.id
+        "user_id": um.id,
+        "role": um.role
     }
 
     token = auth_service.create_access_token(response)
