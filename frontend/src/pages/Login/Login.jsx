@@ -1,17 +1,16 @@
 import { useState } from "react";
 import "../../styles/Login.css";
+import axios from "axios";
 import Logo from "../../assets/logo/productLogo.png";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
-  // local state to hold form data
-  // type object hold username and password
+  const [errorMessage, setErrorMessage] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
 
-  //   change function that changes the value of formdata attributes when user inputs the data
-  //   name of the input field is same as the object attribte name inorder to identify the attribute currently changing
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -20,11 +19,29 @@ const Login = (props) => {
     }));
   };
 
-  //   function to handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/users/login",
+        new URLSearchParams(formData).toString(),
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      );
+
+      const accessToken = response.data.access_token;
+      localStorage.setItem("accessToken", accessToken);
+      alert("Login successful");
+    } catch (error) {
+      console.error("Login failed:", error);
+      setErrorMessage("Error Occurred. Please try again.");
+    }
   };
+
   return (
     <>
       <div className="login-container">
@@ -35,14 +52,18 @@ const Login = (props) => {
               <span className="special">E</span>dufy
             </div>
           </div>
-
+          {errorMessage && (
+            <div className="alert alert-danger mt-3" role="alert">
+              {errorMessage}
+            </div>
+          )}
           <div className="l-form">
             <form onSubmit={handleSubmit}>
               <input
                 type="text"
                 id="username"
                 name="username"
-                placeholder="Email"
+                placeholder="User Name"
                 value={formData.username}
                 onChange={handleChange}
                 className="form-in-common"
@@ -63,7 +84,10 @@ const Login = (props) => {
                 Sign in
               </button>
               <div className="l-msg">
-                Not Registered? <a href="/register"><span className="">Register Now</span></a>
+                Not Registered?{" "}
+                <span className="">
+                  <Link to="/Register">register Now</Link>
+                </span>
               </div>
             </form>
           </div>
