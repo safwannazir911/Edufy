@@ -33,17 +33,19 @@ def create_user(user: RegisterUserSchema, db: Session = Depends(get_db)):
 
 def login_user(form: OAuth2PasswordRequestForm, db: Session = Depends(get_db)):
     user_model = UsersModel(
-        username=form.username,  # used username to login
+        username=form.username,  
         password=form.password
     )
 
     um = users_service.get_user_by_username_service(user_model.username, db)
 
     if not um:
-        raise raise_exception("User not found", 404)
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password")
 
     if not Hash.verify_password(form.password, um.password):
-        raise raise_exception("Incorrect password", 401)
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password")
+
+
 
     response = {
         "sub": um.email,

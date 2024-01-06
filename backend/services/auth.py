@@ -12,7 +12,9 @@ from services.users import get_user_service
 
 oauth_schema = OAuth2PasswordBearer(tokenUrl="/users/login")
 
-
+class Config:
+    SECRET_KEY = 'your_secret_key'  # Replace with your actual secret key
+    ALGORITHM = 'HS256'
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
     if expires_delta:

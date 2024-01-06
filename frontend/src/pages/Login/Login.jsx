@@ -3,8 +3,12 @@ import "../../styles/Login.css";
 import axios from "axios";
 import Logo from "../../assets/logo/productLogo.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Login = (props) => {
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
@@ -21,7 +25,7 @@ const Login = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axios.post(
         "http://localhost:8000/users/login",
@@ -32,15 +36,20 @@ const Login = (props) => {
           },
         }
       );
-
       const accessToken = response.data.access_token;
       localStorage.setItem("accessToken", accessToken);
-      alert("Login successful");
+      navigate('/dashboard');
+  
     } catch (error) {
       console.error("Login failed:", error);
-      setErrorMessage("Invaild Username or Password");
+      if (error.response && error.response.status === 401) {
+        setErrorMessage("Invalid Username or Password");
+      } else {
+        setErrorMessage("An error occurred during login");
+      }
     }
   };
+  
 
   return (
     <>
