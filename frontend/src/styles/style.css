@@ -103,6 +103,13 @@
     padding: .5rem;
 }
 
+.button_css{
+    background: #2525AD;
+    color: white;
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
 @media (max-width: 425px) {
 
     /* Set the width to 100% for devices with width less than 425px */
