@@ -46,8 +46,6 @@ const dashboard = () => {
         <LeftNavButton iconClass="fa-paste" label="Assignment" href="#assignment" />
         <LeftNavButton iconClass="fa-clipboard-user" label="Attendance" href="#attendance" />
         <LeftNavButton iconClass="fa-message" label="Discussion" href="#discussion" />
-
-        {/* Settings and Logout buttons with a different style */}
         <LeftNavButton iconClass="fa-gear" label="Setting" href="#setting" className="silver" />
         <LeftNavButton iconClass="fa-right-from-bracket" label="Log-Out" href="#logout" onClick={handleLogout} className="silver" />
       </div>
