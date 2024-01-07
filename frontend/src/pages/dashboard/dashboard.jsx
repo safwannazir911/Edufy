@@ -7,139 +7,50 @@ import { useNavigate } from "react-router-dom";
 const dashboard = () => {
   const navigate = useNavigate();
 
+  
+  
+  const LeftNavButton = ({ iconClass, label, href, onClick, className }) => (
+    <a href={href}>
+      <div className={`LeftButton ${className || ''}`} onClick={onClick}>
+        <span className="FL">
+          <a href={href}><i className={`fa-solid ${iconClass}`}></i></a>
+        </span>
+        <span className="WW">
+          <a href={href}>{label}</a>
+        </span>
+      </div>
+    </a>
+  );
   const handleLogout = () => {
-    // Clear user-related data (e.g., access token)
     localStorage.removeItem("accessToken");
-
-
-    // Redirect to the login page
     navigate("/login");
   };
-  
-
-
   return (
     <div className="app">
-    <div className='leftNav'>
-    <div className="logo">
-      <span className="MLogo">
-        <img src={logo}></img>
-      </span>
-      <span className="WordLogo">
-        <span className="FirstWord">E</span>dufy
-      </span>
-    </div>
-    <a href="#dashboard">
-    <div className="LeftButton">
-    <span className="FL">
-      <a href="#dashboard"><i class="fa-solid fa-table-columns"></i></a>
-    </span>
-    <span className="WW">
-    <a href="#dashboard">Dashboard</a>
-    </span>
-    </div>
-    </a>
-    <a href="#calendar">
-    <div className="LeftButton">
-    <span className="FL">
-      <a href="#calendar"><i class="fa-solid fa-calendar-days"></i></a>
-    </span>
-    <span className="WW">
-    <a href="#calendar">Calendar</a>
-    </span>
-    </div>
-    </a>
-    <a href="#library">
-    <div className="LeftButton">
-    <span className="FL">
-      <a href="#library"><i class="fa-solid fa-book"></i></a>
-    </span>
-    <span className="WW">
-    <a href="#library">Library</a>
-    </span>
-    </div>
-    </a>
-    <a href="#classroom">
-    <div className="LeftButton">
-    <span className="FL">
-      <a href="#classroom"><i class="fa-solid fa-people-roof"></i></a>
-    </span>
-    <span className="WW">
-    <a href="#classroom">Classroom</a>
-    </span>
-    </div>
-    </a>
-    <a href="#cources">
-    <div className="LeftButton">
-    <span className="FL">
-      <a href="#cources"><i class="fa-solid fa-star"></i></a>
-    </span>
-    <span className="WW">
-    <a href="#cources">Cources</a>
-    </span>
-    </div>
-    </a>
-    <a href="#integration">
-    <div className="LeftButton">
-    <span className="FL">
-      <a href="#integration"><i class="fa-solid fa-circle-notch"></i></a>
-    </span>
-    <span className="WW">
-    <a href="#integration">Integration</a>
-    </span>
-    </div>
-    </a>
-    <a href="#assignment">
-    <div className="LeftButton">
-    <span className="FL">
-      <a href="#assignment"><i class="fa-solid fa-paste"></i></a>
-    </span>
-    <span className="WW">
-    <a href="#assignment">Assignment</a>
-    </span>
-    </div>
-    </a>
-    <a href="#attendance">
-    <div className="LeftButton">
-    <span className="FL">
-      <a href="#attendance"><i class="fa-solid fa-clipboard-user"></i></a>
-    </span>
-    <span className="WW">
-    <a href="#attendance">Attendance</a>
-    </span>
-    </div>
-    </a>
-    <a href="#disscussion">
-    <div className="LeftButton">
-    <span className="FL">
-      <a href="#disscussion"><i class="fa-solid fa-message"></i></a>
-    </span>
-    <span className="WW">
-    <a href="#disscussion">Disscussion</a>
-    </span>
-    </div>
-    </a>
-    <a href="#setting">
-    <div className="ELeftButton">
-    <span className="EFL">
-      <a href="#setting"><i class="fa-solid fa-gear"></i></a>
-    </span>
-    <span className="EWW">
-    <a href="#setting">Setting</a>
-    </span>
-    </div>
-    </a>
-    <a href="#logout">
-    <div className="ELeftButton">
-    <span className="EFL">
-      <a href="#logout"><i class="fa-solid fa-right-from-bracket"></i></a>
-    </span>
-    <span className="EWW">
-    <a onClick={handleLogout}>Log-Out</a>
-    </span>
-    </div>
-    </a>
-    </div>
+      <div className='leftNav'>
+        <div className="logo">
+          <span className="MLogo">
+            <img src={logo} alt="Logo" />
+          </span>
+          <span className="WordLogo">
+            <span className="FirstWord">E</span>dufy
+          </span>
+        </div>
+        
+        <LeftNavButton iconClass="fa-table-columns" label="Dashboard" href="#dashboard" />
+        <LeftNavButton iconClass="fa-calendar-days" label="Calendar" href="#calendar" />
+        <LeftNavButton iconClass="fa-book" label="Library" href="#library" />
+        <LeftNavButton iconClass="fa-people-roof" label="Classroom" href="#classroom" />
+        <LeftNavButton iconClass="fa-star" label="Courses" href="#courses" />
+        <LeftNavButton iconClass="fa-circle-notch" label="Integration" href="#integration" />
+        <LeftNavButton iconClass="fa-paste" label="Assignment" href="#assignment" />
+        <LeftNavButton iconClass="fa-clipboard-user" label="Attendance" href="#attendance" />
+        <LeftNavButton iconClass="fa-message" label="Discussion" href="#discussion" />
+
+        {/* Settings and Logout buttons with a different style */}
+        <LeftNavButton iconClass="fa-gear" label="Setting" href="#setting" className="silver" />
+        <LeftNavButton iconClass="fa-right-from-bracket" label="Log-Out" href="#logout" onClick={handleLogout} className="silver" />
+      </div>
     <div className="page">
     <div>
     <section id="dashboard">

@@ -13,6 +13,9 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+  .silver{
+    color: silver !important;
+  }
   .app{
     display: flex;
     overflow: hidden
