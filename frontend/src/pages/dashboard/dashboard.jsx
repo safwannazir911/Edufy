@@ -21,6 +21,13 @@ const dashboard = () => {
       </div>
     </a>
   );
+  const Section = ({ id, title }) => (
+    <div>
+      <section id={id}>
+        <h1>{title}</h1>
+      </section>
+    </div>
+  );
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     navigate("/login");
@@ -50,47 +57,16 @@ const dashboard = () => {
         <LeftNavButton iconClass="fa-right-from-bracket" label="Log-Out" href="#logout" onClick={handleLogout} className="silver" />
       </div>
     <div className="page">
-    <div>
-    <section id="dashboard">
-    <h1>dashboard</h1>
-    </section>
-    </div><div>
-    <section id="calendar">
-    <h1>Calendar</h1>
-    </section>
-    </div><div>
-    <section id="library">
-    <h1>Library</h1>
-    </section>
-    </div><div>
-    <section id="classroom">
-    <h1>Classroom</h1>
-    </section>
-    </div>
-    <div>
-    <section id="cources">
-    <h1>Cources</h1>
-    </section>
-    </div><div>
-    <section id="integration">
-    <h1>Integration</h1>
-    </section>
-    </div><div>
-    <section id="assignment">
-    <h1>Assignment</h1>
-    </section>
-    </div>
-    <div>
-    <section id="attendance">
-    <h1>Attendance</h1>
-    </section>
-    </div>
-    <div>
-    <section id="disscussion">
-    <h1>Disscussion</h1>
-    </section>
-    </div>
-</div>
+        <Section id="dashboard" title="Dashboard" />
+        <Section id="calendar" title="Calendar" />
+        <Section id="library" title="Library" />
+        <Section id="classroom" title="Classroom" />
+        <Section id="courses" title="Courses" />
+        <Section id="integration" title="Integration" />
+        <Section id="assignment" title="Assignment" />
+        <Section id="attendance" title="Attendance" />
+        <Section id="discussion" title="Discussion" />
+      </div>
     </div>
   );
 }
