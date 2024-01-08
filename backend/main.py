@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from models.create_table import init_table
-from routers import users, posts
+from routers import users, posts, assignment
 
 app = FastAPI()
 
@@ -22,3 +22,4 @@ app.add_middleware(
 
 app.include_router(users.router)
 app.include_router(posts.router)
+app.include_router(assignment.router)
