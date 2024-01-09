@@ -5,6 +5,9 @@ import { faFolder as farFolder } from '@fortawesome/free-regular-svg-icons';
 import axios from 'axios';
 
 const Assignment = () => {
+
+  const username = localStorage.getItem("username");
+  const role = localStorage.getItem("role");
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [fileError, setFileError] = useState('');
   const [uploading, setUploading] = useState(false);
@@ -96,6 +99,12 @@ const Assignment = () => {
   return (
     <div className='container'>
       <h2>Assignment</h2>
+      <div>
+      <div>
+      <h1>Welcome, {username && username.split('@')[0]}!</h1>
+      <p>Role: {role}</p>
+    </div>
+    </div>
 
       <div className="input-group mt-3">
         <input type="text" className="form-control" placeholder="Search" />

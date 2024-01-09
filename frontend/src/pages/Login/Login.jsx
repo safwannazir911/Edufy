@@ -36,7 +36,13 @@ const Login = (props) => {
           },
         }
       );
+      const { username, role } = response.data.user;
       const accessToken = response.data.access_token;
+      // localStorage.setItem("username", username);
+      // localStorage.setItem("role", role);
+      localStorage.setItem("username", response.data.user.username);
+localStorage.setItem("role", response.data.user.role);
+
       localStorage.setItem("accessToken", accessToken);
       navigate('/dashboard');
   
