@@ -12,3 +12,4 @@ class UsersModel(Base):
     email = Column(String, unique=True)
     password = Column(String)
     posts = relationship("PostsModel", back_populates="user")
+    courses = relationship("CourseModel", back_populates="teacher")     # added to support relation to courses
