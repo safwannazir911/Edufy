@@ -13,3 +13,6 @@ class UsersModel(Base):
     password = Column(String)
     posts = relationship("PostsModel", back_populates="user")
     courses = relationship("CourseModel", back_populates="teacher")     # added to support relation to courses
+
+    # relationship to link users to their enrollments
+    enrollments = relationship("EnrollmentModel", back_populates="user")

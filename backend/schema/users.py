@@ -16,6 +16,11 @@ class PostsList(BaseModel):
     class Config:
         orm_mode = True
 
+class CourseList(BaseModel):
+    title: str
+    description: str
+
+
 
 class RegisterUserSchema(BaseModel):
     role: UserRole
@@ -38,6 +43,7 @@ class UserDisplaySchema(BaseModel):
     email: str
     username: str
     posts: List[PostsList] = []
+    courses: List[CourseList] = []      # added to make the list of courses of a teacher visible
 
     class Config:
         orm_mode = True
