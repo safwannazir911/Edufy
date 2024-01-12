@@ -1,13 +1,12 @@
 from typing import List, Optional
 from pydantic import BaseModel
-from models.users import UsersModel as User
+from schema.users import UserDisplaySchema as User
 
 # @tabeed-h
 # define base schema for course
 class CourseBase(BaseModel):
     title: str
     description: Optional[str] = None
-    teacher_id: int
 
 # schema to create a new course implement CourseBase
 class CourseCreate(CourseBase):

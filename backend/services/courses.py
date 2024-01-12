@@ -1,7 +1,7 @@
 # services/courses_services.py
 from sqlalchemy.orm import Session
 from models.users import UsersModel
-from schema.courses import CourseCreate, CourseUpdate
+from schema.courses import CourseCreate, CourseUpdate, CourseList
 from models.courses import CourseModel
 from datetime import datetime
 
@@ -9,7 +9,7 @@ from datetime import datetime
 
 # service to create a new course
 def create_course(db: Session, user: UsersModel, course_create: CourseCreate):
-    course = CourseModel(**course_create.dict(), instructor_id=user.id)
+    course = CourseModel(**course_create.dict(), teacher_id=user.id)
     db.add(course)
     db.commit()
     db.refresh(course)

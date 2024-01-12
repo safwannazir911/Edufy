@@ -11,4 +11,4 @@ class CourseModel(Base):
     description = Column(Text)                              # short discription of the course
     teacher_id = Column(Integer, ForeignKey("users.id"), nullable=False)        # user (teacher) that has created the course
 
-    teacher = relationship("UserModel", back_populates="courses")   # populating the teacher field relation
+    teacher = relationship("UsersModel", back_populates="courses")   # populating the teacher field relation

@@ -24,16 +24,16 @@ def read_course(course_id: int, db: Session = Depends(get_db)):
     return courses_controller.get_course(db, course_id)
 
 # route to get all the courses in the DB
-@router.get("/all", response_model=CourseList)
+@router.get("/all")
 def read_courses(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     return courses_controller.get_courses(db, skip=skip, limit=limit)
 
 # route to update a particular course with ID
 @router.put("/update/{course_id}", response_model=Course)
-def update_course(course_id: int, course_update: CourseUpdate, db: Session = Depends(get_db)):
-    return courses_controller.update_course(db, course_id, course_update)
+def update_course(course_id: int, course_update: CourseUpdate,user: UsersModel = Depends(get_current_user), db: Session = Depends(get_db)):
+    return courses_controller.update_course(db, user,course_id, course_update)
 
 # route to delete a particular course with ID
 @router.delete("/delete/{course_id}", response_model=Course)
-def delete_course(course_id: int, db: Session = Depends(get_db)):
-    return courses_controller.delete_course(db, course_id)
+def delete_course(course_id: int,user: UsersModel = Depends(get_current_user), db: Session = Depends(get_db)):
+    return courses_controller.delete_course(db,user, course_id)
