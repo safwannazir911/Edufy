@@ -12,3 +12,7 @@ class CourseModel(Base):
     teacher_id = Column(Integer, ForeignKey("users.id"), nullable=False)        # user (teacher) that has created the course
 
     teacher = relationship("UsersModel", back_populates="courses")   # populating the teacher field relation
+
+    # relationship to link courses to their enrollments
+    enrollments = relationship("EnrollmentModel", back_populates="course")
+
