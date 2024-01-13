@@ -48,7 +48,13 @@ const Registration = () => {
         <div className='root_container'>
             <div className='svg_container'>
                 <svg xmlns="http://www.w3.org/2000/svg" width="897" height="1024" viewBox="0 0 897 1024" fill="none">
-                    {/* SVG path and linear gradient definitions */}
+                    <path d="M967 187.595C1074 1161.44 1239.34 1058.54 189.34 1025.44C-201.36 1013.13 133.991 783.467 133.991 484.973C133.991 186.48 -201.554 -5.05912 189.34 -5.05912C1084.5 -5.05895 1004.5 -77.0624 967 187.595Z" fill="url(#paint0_linear_1_19)" />
+                    <defs>
+                        <linearGradient id="paint0_linear_1_19" x1="523.156" y1="-13.9999" x2="1928.5" y2="421.5" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#5050A5" />
+                            <stop offset="1" stop-color="#42868F" stop-opacity="0" />
+                        </linearGradient>
+                    </defs>
                 </svg>
                 <img src={svgImage} alt="Logo" />
             </div>
