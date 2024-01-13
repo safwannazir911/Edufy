@@ -1,16 +1,17 @@
 import React from 'react'
 
-const LeftNavButton = ({ iconClass, label, href, onClick, className }) => (
-    <a href={href}>
-      <div className={`LeftButton ${className || ''}`} onClick={onClick}>
-        <span className="FL">
-          <a href={href}><i className={`fa-solid ${iconClass}`}></i></a>
-        </span>
-        <span className="WW">
-          <a href={href}>{label}</a>
-        </span>
-      </div>
-    </a>
-  );
+export const LeftNavButton = ({ label, icon, link, onClick, labelColor }) => {
+  const labelStyle = {
+    color: labelColor === 'dark' ? '#4d4d4d' : '', // Set color based on label_color prop
+  };
 
-export default LeftNavButton;
+
+  return (
+    <div onClick={onClick}  >
+      <a href={link} className={`text-${labelColor} p-2 m-1`}>
+          {icon}
+          <span style={labelStyle}>{label}</span>
+      </a>
+    </div>
+  )
+}

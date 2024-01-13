@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faFile, faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faFolder as farFolder } from '@fortawesome/free-regular-svg-icons';
