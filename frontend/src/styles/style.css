@@ -34,9 +34,12 @@
     padding: .5rem;
     font-weight: 700;
 }
+
 .inner_container input::placeholder {
-    color: #999; /* Change this color to your desired placeholder color */
+    color: #999;
+    /* Change this color to your desired placeholder color */
 }
+
 .inner_container select {
     color: #999;
     border-radius: 10px;
@@ -51,13 +54,13 @@
 
 
 .logo_container>img {
-    height: 15vw;
+    height: 8vw;
 }
 
 
 .logo_container span {
     color: #DE265E;
-    font-size: 48px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -66,13 +69,14 @@
 .logo_container>h1 {
     color: #000000;
     font-family: Istok Web;
-    font-size: 48px;
+    font-size: 2rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     margin-left: 1rem;
 }
-.svg_container{
+
+.svg_container {
     position: absolute;
     right: 0;
     display: flex;
@@ -83,11 +87,11 @@
 }
 
 
-.svg_container img{
+.svg_container img {
     position: absolute;
 }
 
-.svg_container svg{
+.svg_container svg {
     height: 100vh;
 }
 
@@ -103,23 +107,25 @@
     padding: .5rem;
 }
 
-.button_css{
+.button_css {
     background: #2525AD;
     color: white;
     padding: 7px;
     border: 1px solid black;
     border-radius: 5px;
 }
+
 @media (max-width: 425px) {
 
     /* Set the width to 100% for devices with width less than 425px */
     .inner_container {
         width: 100vw;
     }
-    .svg_container{
+
+    .svg_container {
         display: none;
     }
-   
+
 
     /* Add any other styles or adjustments specific to smaller screens */
 }
@@ -131,10 +137,11 @@
     .inner_container {
         width: 80vw;
     }
-    .svg_container{
+
+    .svg_container {
         display: none;
     }
-   
+
 
     /* Add any other styles or adjustments specific to screens in this range */
 }
@@ -145,34 +152,89 @@
     .inner_container {
         width: 50vw;
     }
-    .svg_container{
+
+    .svg_container {
         right: -20rem;
     }
 
     /* Add any other styles or adjustments specific to screens in this range */
 }
+
 @media (min-width: 1025px) and (max-width: 1440px) {
 
     /* Set the width to 50% for devices with width between 426px and 768px */
     .inner_container {
         width: 40vw;
     }
-    .svg_container{
+
+    .svg_container {
         right: -10rem;
     }
 
     /* Add any other styles or adjustments specific to screens in this range */
 }
+
 @media (min-width: 1445px) {
 
     /* Set the width to 50% for devices with width between 426px and 768px */
     .inner_container {
         width: 30vw;
     }
-    .svg_container{
+
+    .svg_container {
         right: -10rem;
     }
 
-   
+
     /* Add any other styles or adjustments specific to screens in this range */
 }
+.component_area{
+    width: 65vw;
+    padding: 10px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+
+}
+
+.sidebar {
+    border: 1px solid #d9d9d9;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 20vw;
+    height: 100vh;
+    background-color: rgb(240, 245, 255);
+    box-shadow:  22px 22px 52px #e7e7e7,
+    -22px -22px 52px #f6f6f6;
+    position: relative;
+}
+
+.sidebar_container {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+
+.sidebar_container div :hover {
+    background-color: rgb(219, 238, 255);
+}
+
+
+.sidebar_container a {
+    display: flex;
+    align-items: center;
+    text-decoration:none;
+    border-radius: 5px;
+    color: rgb(104, 104, 253);
+}
+
+.sidebar_container span {
+    margin-left: 5px;
+    font-weight: 600;
+}
+
+.sidebar_container_dark{
+    position: absolute;
+    bottom: 0;
+}
+
