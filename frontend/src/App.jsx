@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"; // importing react router
 import Login from "./pages/Login/Login";
 import Registeration from "./pages/Register/Registeration";
-import Dashboard from "./pages/dashboard/dashboard";
-import Assignment from "./Components/Assignment"
-import { Helo } from "./Components/Helo";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Assignment from "./components/Assignment"
+import { Helo } from "./components/Helo";
 
 const App = () => {
   return (

@@ -90,7 +90,7 @@ const Registration = () => {
                             name="name"  // Change 'fullName' to 'name'
                             value={formData.name}  // Change 'fullName' to 'name'
                             onChange={handleChange}
-                            placeholder='username'
+                            placeholder='Username'
                             required
                         />
                     </div>

@@ -1,6 +1,5 @@
 import React from "react";
-import "../../styles/Dashboard.css";
-import { LeftNavBar } from "../../Components/LeftNavBar";
+import { LeftNavBar } from "../../components/LeftNavBar";
 import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
