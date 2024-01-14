@@ -1,0 +1,11 @@
+.component_area {
+    width: 100%;
+    padding: 10px;
+    background-color: #b3dde0;
+    margin: 0;
+}
+.DicsussDIV{
+    display: flex;
+    justify-content: space-between;
+    padding: 19px 50px 0 50px;
+}

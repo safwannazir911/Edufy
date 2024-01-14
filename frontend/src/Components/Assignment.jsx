@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faFile, faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faFolder as farFolder } from '@fortawesome/free-regular-svg-icons';
 import axios from 'axios';
+import "./style/UpparArea.css"
 
 const Assignment = () => {
 
@@ -98,11 +99,13 @@ const Assignment = () => {
 
   return (
     <div className='container'>
+    <div className='DicsussDIV'>
       <h2>Assignment</h2>
       <div>
       <div>
       <h1>Welcome, {username && username.split('@')[0]}!</h1>
       <p>Role: {role}</p>
+    </div>
     </div>
     </div>
 

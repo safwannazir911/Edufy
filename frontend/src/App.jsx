@@ -3,7 +3,15 @@ import Login from "./pages/Login/Login";
 import Registeration from "./pages/Register/Registeration";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Assignment from "./components/Assignment"
+import { Dashboardd } from "./Components/Dashboardd"
 import { Helo } from "./components/Helo";
+import { Calendar } from "./Components/Calender";
+import { Library } from "./Components/Library";
+import { Classroom } from "./Components/Classroom";
+import { Courses } from "./Components/Courses";
+import { Integration } from "./Components/Integration";
+import { Attendance } from "./Components/Attendance";
+import { Discussion } from "./Components/Discussion";
 
 const App = () => {
   return (
@@ -16,15 +24,15 @@ const App = () => {
         <Route path="/register" element={<Registeration />} />
         <Route path="/logout" element={<Login />} />
         <Route path="/app" element={<Dashboard  />}>
-          <Route path="dashboard" element={<Helo  />} />
-          <Route path="calendar" element={<Helo  />} />
-          <Route path="library" element={<Helo  />} />
-          <Route path="classroom" element={<Helo  />} />
-          <Route path="courses" element={<Helo  />} />
-          <Route path="integration" element={<Helo />} />
+          <Route path="dashboard" element={<Dashboardd  />} />
+          <Route path="calendar" element={<Calendar  />} />
+          <Route path="library" element={<Library  />} />
+          <Route path="classroom" element={<Classroom  />} />
+          <Route path="courses" element={<Courses  />} />
+          <Route path="integration" element={<Integration />} />
           <Route path="assignment" element={<Assignment/>} />          
-          <Route path="attendance" element={<Helo  />} />
-          <Route path="discussion" element={<Helo  />} />
+          <Route path="attendance" element={<Attendance  />} />
+          <Route path="discussion" element={<Discussion  />} />
           <Route path="settings" element={<Helo  />} />
           <Route path="help" element={<Helo  />} />
         </Route>
