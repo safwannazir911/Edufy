@@ -44,7 +44,7 @@ const Login = (props) => {
 localStorage.setItem("role", response.data.user.role);
 
       localStorage.setItem("accessToken", accessToken);
-      navigate('/dashboard');
+      navigate('/app');
   
     } catch (error) {
       console.error("Login failed:", error);
