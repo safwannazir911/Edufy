@@ -188,12 +188,13 @@
 
     /* Add any other styles or adjustments specific to screens in this range */
 }
-.component_area{
+
+.component_area {
     width: 65vw;
     padding: 10px;
     margin-top: 1rem;
     margin-left: 1rem;
-
+    background-color: #ff7f7f00 !important;
 }
 
 .sidebar {
@@ -202,10 +203,11 @@
     border-top-right-radius: 15px;
     width: 20vw;
     background-color: rgb(240, 245, 255);
-    box-shadow:  22px 22px 52px #f5f5f5,
-    -22px -22px 52px #f6f6f6;
+    box-shadow: 22px 22px 52px #f5f5f5,
+        -22px -22px 52px #f6f6f6;
     position: relative;
     min-height: 100vh;
+    z-index: -999;
 }
 
 .sidebar_container {
@@ -223,7 +225,7 @@
 .sidebar_container a {
     display: flex;
     align-items: center;
-    text-decoration:none;
+    text-decoration: none;
     border-radius: 5px;
     color: rgb(104, 104, 253);
 }
@@ -233,8 +235,13 @@
     font-weight: 600;
 }
 
-.sidebar_container_dark{
+.sidebar_container_dark {
     position: absolute;
     bottom: 0;
 }
 
+.event {
+    color: #DE265E;
+    font-weight: bold;
+    background-color: rgb(255, 224, 224);
+}

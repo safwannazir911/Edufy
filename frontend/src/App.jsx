@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Assignment from "./components/Assignment"
 import { Dashboardd } from "./Components/Dashboardd"
 import { Helo } from "./components/Helo";
-import { Calendar } from "./Components/Calender";
+import { Calendar } from "./components/Calender";
 import { Library } from "./components/Library";
 import { Classroom } from "./Components/Classroom";
 import { Courses } from "./Components/Courses";
