@@ -249,4 +249,9 @@
 }
 .urgrent_events{
     background-color: #ff6f6f;
+    text-wrap: wrap;   
+}
+
+.chat{
+    float: right;
 }
