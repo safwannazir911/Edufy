@@ -6,7 +6,7 @@ import Assignment from "./components/Assignment"
 import { Dashboardd } from "./Components/Dashboardd"
 import { Helo } from "./components/Helo";
 import { Calendar } from "./Components/Calender";
-import { Library } from "./Components/Library";
+import { Library } from "./components/Library";
 import { Classroom } from "./Components/Classroom";
 import { Courses } from "./Components/Courses";
 import { Integration } from "./Components/Integration";

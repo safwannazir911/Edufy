@@ -201,12 +201,11 @@
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     width: 20vw;
-    height: 100vh;
     background-color: rgb(240, 245, 255);
-    box-shadow:  22px 22px 52px #e7e7e7,
+    box-shadow:  22px 22px 52px #f5f5f5,
     -22px -22px 52px #f6f6f6;
     position: relative;
-    min-height: 50rem;
+    min-height: 100vh;
 }
 
 .sidebar_container {
