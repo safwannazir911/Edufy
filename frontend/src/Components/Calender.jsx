@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 
 const Calendar = () => {
   const [events, setEvents] = useState([
     { "id": 1, "title": "Exam 1", "date": "2024-01-10" },
     { "id": 2, "title": "Homework Due", "date": "2024-01-15" },
+    { "id": 2, "title": "Homework Due", "date": "2024-01-28" },
     { "id": 3, "title": "Quiz", "date": "2024-01-20" },
-    { "id": 4, "title": "Project Presentation", "date": "2024-01-25" }
+    { "id": 4, "title": "Project Presentation", "date": "2024-01-25" },
+    { "id": 4, "title": "Project Presentation", "date": "2024-01-28" }
   ]);
+  const [urgentEvents, setUrgentEvents] = useState([])
   const [selectedCourseId, setSelectedCourseId] = useState('');
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
@@ -45,30 +50,37 @@ const Calendar = () => {
   // const role = localStorage.getItem('role');
 
   const username = "Safwan";
-  const role = 'teacher'; // Assuming a default role for testing
+  const role = 'student'; // Assuming a default role for testing
   useEffect(() => {
     // Fetch events for the selected course when the component mounts
-    // fetchEvents()
+    fetchEvents()
     // fetchTeacherCourses();
   }, []);
 
   const fetchEvents = async () => {
     try {
-      if (role === 'teacher') {
-        const requestOfEachCourseId = teacherCourses.map(course =>
-          axios.get(`http://localhost:8000/events/${course.id}`)
-        );
-        const responses = await Promise.all(requestOfEachCourseId);
-        const eventData = responses.map(response => response.data);
-        setEvents(eventData || []);
+      // if (role === 'teacher') {
+      //   const requestOfEachCourseId = teacherCourses.map(course =>
+      //     axios.get(`http://localhost:8000/events/${course.id}`)
+      //   );
+      //   const responses = await Promise.all(requestOfEachCourseId);
+      //   const eventData = responses.map(response => response.data);
+      //   setEvents(eventData || []);
 
-      }
-      else {
-        setEvents(enrolledCourses.events)
+      // }
+      // else {
+      //   setEvents(enrolledCourses.events)
 
-      }
+      // }
 
+      // Filter events for the next day
+      const today = new Date();
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
 
+      const filteredEvents = events.filter(event => new Date(event.date) >= today && new Date(event.date) <= tomorrow);
+      console.log(filteredEvents);
+      setUrgentEvents(filteredEvents);
 
     } catch (error) {
       console.error('Error fetching events:', error);
@@ -96,7 +108,7 @@ const Calendar = () => {
   const addEvent = async () => {
     try {
       if (title && date && selectedCourseId) {
-        await axios.post('http://localhost:8000/events', {
+        await axios.post('http://localhost:8000/events/add', {
           id: selectedCourseId,
           title,
           date,
@@ -112,11 +124,31 @@ const Calendar = () => {
     }
   };
 
+  const deleteEvent = async (eventId) => {
+    try {
+      // You need to implement your delete event API endpoint
+      // Example: await axios.delete(`http://localhost:8000/events/${eventId}`);
+      // After deleting, refresh the events
+      axios.delete(`http://localhost:8000/events/${eventId}`)
+      fetchEvents();
+    } catch (error) {
+      console.error('Error deleting event:', error);
+    }
+  };
+
   const eventContent = (arg) => {
     return (
-      <>
-        <div className='event'>{arg.event.title}</div>
-      </>
+      <div className='event'>
+        {arg.event.title}
+        {role === 'teacher' && (
+          <button
+            className='btn btn-sm btn-danger ms-2'
+            onClick={() => deleteEvent(arg.event.id)}
+          >
+            Delete
+          </button>
+        )}
+      </div>
     );
   };
 
@@ -144,7 +176,7 @@ const Calendar = () => {
                 <option>Select your Course</option>
                 {/* Populate dropdown with teacher's courses */}
                 {teacherCourses.map(course => (
-                  <option key={course.course_id} value={course.id}>
+                  <option key={course.id} value={course.id}>
                     {course.title}
                   </option>
                 ))}
@@ -167,6 +199,21 @@ const Calendar = () => {
       <div className='mt-4'>
         <h3>Events</h3>
 
+        <div>
+          <h3>Urgent Events</h3>
+          <ul className="list-group mb-2 ">
+            {urgentEvents.map((event) => (
+              <li key={event.id} className="list-group-item urgrent_events">
+                {event.title} - {event.date}
+                <FontAwesomeIcon icon={faCircleExclamation}
+                style={{float:"right",fontSize:"25px" }} 
+                />         
+
+              </li>
+
+            ))}
+          </ul>
+        </div>
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView='dayGridMonth'
