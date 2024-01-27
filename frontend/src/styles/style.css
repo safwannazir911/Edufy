@@ -207,7 +207,6 @@
         -22px -22px 52px #f6f6f6;
     position: relative;
     min-height: 100vh;
-    z-index: -999;
 }
 
 .sidebar_container {
@@ -244,4 +243,7 @@
     color: #DE265E;
     font-weight: bold;
     background-color: rgb(255, 224, 224);
+    padding: 5px;
+    text-wrap: wrap;
+    
 }
