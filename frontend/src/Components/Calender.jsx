@@ -50,7 +50,7 @@ const Calendar = () => {
   // const role = localStorage.getItem('role');
 
   const username = "Safwan";
-  const role = 'student'; // Assuming a default role for testing
+  const role = 'teacher'; // Assuming a default role for testing
   useEffect(() => {
     // Fetch events for the selected course when the component mounts
     fetchEvents()
