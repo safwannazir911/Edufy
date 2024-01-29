@@ -1,24 +1,20 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+
 const Discussion = () => {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    { text: 'Hello!', sender: 'other' },
+    { text: 'Hi there!', sender: 'me' },
+    { text: 'How are you?', sender: 'other' },
+  ]);
   const [inputMessage, setInputMessage] = useState('');
   const [webSocket, setWebSocket] = useState(null);
+  const [connectedUsers, setConnectedUsers] = useState([]);
+  const [recipientUserId, setRecipientUserId] = useState(null);
   const usernameRef = useRef(null);
-
-  const generateRandomString = useCallback((length) => {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      result += characters.charAt(randomIndex);
-    }
-    return result;
-  }, []);
-
-  const role = "student";
+  const role = "student"
 
   useEffect(() => {
     usernameRef.current = generateRandomString(8);
@@ -31,8 +27,16 @@ const Discussion = () => {
     };
 
     ws.onmessage = (event) => {
-      const receivedMessage = event.data;
-      setMessages((prevMessages) => [...prevMessages, { text: receivedMessage, sender: 'other' }]);
+      const data = JSON.parse(event.data);
+      console.log(data);
+      if (data.type === 'user_list') {
+        // Exclude the current user from the connected users list
+        const updatedUsers = data.users.filter(user => user !== usernameRef.current);
+        setConnectedUsers(updatedUsers);
+      } else {
+        const receivedMessage = data.message;
+        setMessages((prevMessages) => [...prevMessages, { text: receivedMessage, sender: 'other' }]);
+      }
     };
 
     ws.onerror = (error) => {
@@ -51,48 +55,84 @@ const Discussion = () => {
   }, []);
 
   const sendMessage = () => {
-    if (webSocket && inputMessage.trim() !== '') {
+    if (webSocket && inputMessage.trim() !== '' && recipientUserId) {
       const newMessage = { text: inputMessage, sender: 'me' };
       setMessages((prevMessages) => [...prevMessages, newMessage]);
-      webSocket.send(inputMessage);
+      webSocket.send(JSON.stringify({ type: 'message', recipient: recipientUserId, message: inputMessage }));
       setInputMessage('');
     }
   };
 
+  const generateRandomString = (length) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+    return result;
+  };
+
   return (
-    <div className='m-4'>
-      <h2>Discussion</h2>
-      <div>
-        <div>
-          <h1>Welcome, {usernameRef.current && usernameRef.current.split('@')[0]}!</h1>
-          <p>Role: {role}</p>
-        </div>
-        <div>
-          <ul className="list-group">
-            {messages.map((message, index) => (
-              <li
-                key={index}
-                className={`list-group-item ${message.sender === 'me' ? 'list-group-item-success' : 'list-group-item-info'
-                  }`}
-              >
-                {message.text}
-                {message.sender === 'me' ? <FontAwesomeIcon icon={faUser} className='chat'/> : null
-                }
-
-
-
+    <div className='container'>
+      <div className='row'>
+        <div className='col-md-4'>
+          <h2 className='mt-3'>Chat</h2>
+          <ul className='list-group'>
+            {console.log(connectedUsers)}
+            {connectedUsers.map((user) => (
+              <li key={user} onClick={() => setRecipientUserId(user)} className='list-group-item'>
+                {user}
+                {/* Add teacher icon if the role is 'teacher' */}
+                {<FontAwesomeIcon icon={faChalkboardTeacher} className='chat' />}            
               </li>
             ))}
           </ul>
-          <div className="input-group mt-3">
-            <input
-              type='text'
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              className="form-control"
-              placeholder="Type your message..."
-            />
-            <button onClick={sendMessage} className="btn btn-primary ml-2">Send</button>
+        </div>
+        <div className='col-md-8 mt-4'>
+          <div className='card mt-3'>
+            <div className='card-header'>
+              <h2>Welcome, {usernameRef.current && usernameRef.current.split('@')[0]}!</h2>
+            </div>
+            <div className='card-body'>
+              <div className='mb-3'>
+                <label htmlFor='recipientSelect' className='form-label'>Select Recipient:</label>
+                <select
+                  id='recipientSelect'
+                  value={recipientUserId || ''}
+                  onChange={(e) => setRecipientUserId(e.target.value)}
+                  className='form-select'
+                >
+                  <option value='' disabled>Select recipient</option>
+                  {connectedUsers.map((user) => (
+                    <option key={user} value={user}>
+                      {user}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <ul className='list-group'>
+                {messages.map((message, index) => (
+                  <li
+                    key={index}
+                    className={`list-group-item ${message.sender === 'me' ? 'list-group-item-success' : 'list-group-item-info'}`}
+                  >
+                    {message.text}
+                    {message.sender === 'me' ? <FontAwesomeIcon icon={faUser} className='chat' /> : null}
+                  </li>
+                ))}
+              </ul>
+              <div className='input-group mt-3'>
+                <input
+                  type='text'
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  className='form-control'
+                  placeholder='Type your message...'
+                />
+                <button onClick={sendMessage} className='btn btn-primary ml-2'>Send</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
