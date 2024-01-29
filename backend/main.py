@@ -1,8 +1,12 @@
 from fastapi import FastAPI, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.websockets import WebSocketDisconnect
 
 from models.create_table import init_table
 from routers import users, posts, assignment, courses, enrollment
+
+from typing import Dict
+import json
 
 app = FastAPI()
 
@@ -19,24 +23,45 @@ app.add_middleware(
     allow_methods=["*"],  # You can specify the allowed HTTP methods
     allow_headers=["*"],  # You can specify the allowed HTTP headers
 )
-connected_users = {}
+
+# WebSocket endpoint
+connected_users: Dict[str, WebSocket] = {}
+async def broadcast_user_list():
+    connected_usernames = list(connected_users.keys())
+    for username, ws in connected_users.items():
+        try:
+            # Sending the updated user list to all connected clients
+            await ws.send_text(
+                json.dumps({"type": "user_list", "users": connected_usernames})
+            )
+        except WebSocketDisconnect:
+            # Remove disconnected users from the dictionary
+            del connected_users[username]
+
 @app.websocket("/ws/{user_id}")
 async def websocket_endpoint(user_id: str, websocket: WebSocket):
     await websocket.accept()
-
-    # Store the WebSocket connection in the dictionary
     connected_users[user_id] = websocket
+    print(connected_users)
 
     try:
+        await broadcast_user_list()
         while True:
             data = await websocket.receive_text()
+            print(data)
+           # Parse the received JSON data
+            data_obj = json.loads(data)
+
             # Send the received data to the other user
-            for user, user_ws in connected_users.items():
-                if user != user_id:
-                    await user_ws.send_text(data)
-    except:
+            recipient = data_obj.get("recipient")
+
+            if recipient in connected_users:
+                recipient_ws = connected_users[recipient]
+                await recipient_ws.send_text(data)
+    except WebSocketDisconnect:
         # If a user disconnects, remove them from the dictionary
-        del connected_users[user_id]
+        if user_id in connected_users:
+            del connected_users[user_id]
         await websocket.close()
 
 app.include_router(users.router)
