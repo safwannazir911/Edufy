@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faFile, faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faFolder as farFolder } from '@fortawesome/free-regular-svg-icons';
 import axios from 'axios';
-import "./style/UpparArea.css"
 
 const Assignment = () => {
 
@@ -99,7 +98,7 @@ const Assignment = () => {
 
   return (
     <div className='container'>
-    <div className='DicsussDIV'>
+    <div className='m-4'>
       <h2>Assignment</h2>
       <div>
       <div>

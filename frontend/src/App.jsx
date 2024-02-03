@@ -3,15 +3,15 @@ import Login from "./pages/Login/Login";
 import Registeration from "./pages/Register/Registeration";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Assignment from "./components/Assignment"
-import { Dashboardd } from "./Components/Dashboardd"
 import { Helo } from "./components/Helo";
+import { DashboardMain } from "./components/DashboardMain";
 import { Calendar } from "./components/Calender";
 import { Library } from "./components/Library";
-import { Classroom } from "./Components/Classroom";
-import { Courses } from "./Components/Courses";
-import { Integration } from "./Components/Integration";
-import { Attendance } from "./Components/Attendance";
-import { Discussion } from "./Components/Discussion";
+import { Classroom } from "./components/Classroom";
+import { Courses } from "./components/Courses";
+import { Integration } from "./components/Integration";
+import { Attendance } from "./components/Attendance";
+import { Discussion } from "./components/Discussion";
 
 const App = () => {
   return (
@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/register" element={<Registeration />} />
         <Route path="/logout" element={<Login />} />
         <Route path="/app" element={<Dashboard  />}>
-          <Route path="dashboard" element={<Dashboardd  />} />
+          <Route path="dashboard" element={<DashboardMain  />} />
           <Route path="calendar" element={<Calendar  />} />
           <Route path="library" element={<Library  />} />
           <Route path="classroom" element={<Classroom  />} />

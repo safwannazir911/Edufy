@@ -255,4 +255,6 @@
 .chat{
     float: right;
 }
-
+.chat_li:hover{
+    background-color: aliceblue;
+}

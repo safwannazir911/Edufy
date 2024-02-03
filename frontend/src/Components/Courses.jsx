@@ -53,7 +53,7 @@ export const Courses = () => {
   // const role = localStorage.getItem("role");
 
   const username = "safwan";
-  const role = "teacher";
+  const role = "student";
 
   useEffect(() => {
     // Fetch and display all courses when the component mounts

@@ -81,7 +81,7 @@ const Discussion = () => {
           <ul className='list-group'>
             {console.log(connectedUsers)}
             {connectedUsers.map((user) => (
-              <li key={user} onClick={() => setRecipientUserId(user)} className='list-group-item'>
+              <li key={user} onClick={() => setRecipientUserId(user)} className='list-group-item chat_li'>
                 {user}
                 {/* Add teacher icon if the role is 'teacher' */}
                 {<FontAwesomeIcon icon={faChalkboardTeacher} className='chat' />}            
@@ -92,7 +92,8 @@ const Discussion = () => {
         <div className='col-md-8 mt-4'>
           <div className='card mt-3'>
             <div className='card-header'>
-              <h2>Welcome, {usernameRef.current && usernameRef.current.split('@')[0]}!</h2>
+              <h2>Messages</h2>
+              <p>Welcome, {usernameRef.current && usernameRef.current.split('@')[0]}!</p>
             </div>
             <div className='card-body'>
               <div className='mb-3'>
