@@ -3,7 +3,7 @@ import axios from 'axios';
 import dummyAttendanceData from './dummyAttendanceData ';
 export const Attendance = () => {
   const username = localStorage.getItem("username");
-  const role = "student";
+  const role = "teacher";
 
   const [selectedCourse, setSelectedCourse] = useState('');
   const [selectedDate, setSelectedDate] = useState('');

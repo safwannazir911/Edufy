@@ -3,7 +3,6 @@ import Login from "./pages/Login/Login";
 import Registeration from "./pages/Register/Registeration";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Assignment from "./components/Assignment"
-import { Helo } from "./components/Helo";
 import { DashboardMain } from "./components/DashboardMain";
 import { Calendar } from "./components/Calender";
 import { Library } from "./components/Library";
@@ -12,6 +11,8 @@ import { Courses } from "./components/Courses";
 import { Integration } from "./components/Integration";
 import { Attendance } from "./components/Attendance";
 import { Discussion } from "./components/Discussion";
+import Settings from "./components/Settings";
+import Help from "./components/Help";
 
 const App = () => {
   return (
@@ -33,8 +34,8 @@ const App = () => {
           <Route path="assignment" element={<Assignment/>} />          
           <Route path="attendance" element={<Attendance  />} />
           <Route path="discussion" element={<Discussion  />} />
-          <Route path="settings" element={<Helo  />} />
-          <Route path="help" element={<Helo  />} />
+          <Route path="settings" element={<Settings  />} />
+          <Route path="help" element={<Help  />} />
         </Route>
       </Routes>
 

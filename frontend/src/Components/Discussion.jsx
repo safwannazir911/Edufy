@@ -76,6 +76,7 @@ const Discussion = () => {
   return (
     <div className='container'>
       <div className='row'>
+
         <div className='col-md-4'>
           <h2 className='mt-3'>Chat</h2>
           <ul className='list-group'>
@@ -84,11 +85,13 @@ const Discussion = () => {
               <li key={user} onClick={() => setRecipientUserId(user)} className='list-group-item chat_li'>
                 {user}
                 {/* Add teacher icon if the role is 'teacher' */}
-                {<FontAwesomeIcon icon={faChalkboardTeacher} className='chat' />}            
+                {<FontAwesomeIcon icon={faChalkboardTeacher} className='chat' />}
               </li>
             ))}
           </ul>
         </div>
+
+
         <div className='col-md-8 mt-4'>
           <div className='card mt-3'>
             <div className='card-header'>
@@ -112,17 +115,20 @@ const Discussion = () => {
                   ))}
                 </select>
               </div>
-              <ul className='list-group'>
-                {messages.map((message, index) => (
-                  <li
-                    key={index}
-                    className={`list-group-item ${message.sender === 'me' ? 'list-group-item-success' : 'list-group-item-info'}`}
-                  >
+
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`d-flex ${message.sender === 'me' ? 'justify-content-end' : 'justify-content-start'}`}
+                >
+                  <div className={`msg d-flex align-items-center ${message.sender === 'me' ? 'msg-right' : 'msg-left'}`}>
                     {message.text}
-                    {message.sender === 'me' ? <FontAwesomeIcon icon={faUser} className='chat' /> : null}
-                  </li>
-                ))}
-              </ul>
+                  </div>
+                </div>
+              ))}
+
+
+
               <div className='input-group mt-3'>
                 <input
                   type='text'

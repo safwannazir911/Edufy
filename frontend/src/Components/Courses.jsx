@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Modal, Button } from 'react-bootstrap';
 
 
@@ -53,7 +55,7 @@ export const Courses = () => {
   // const role = localStorage.getItem("role");
 
   const username = "safwan";
-  const role = "student";
+  const role = "teacher";
 
   useEffect(() => {
     // Fetch and display all courses when the component mounts
@@ -190,10 +192,14 @@ export const Courses = () => {
                     <p>{course.description}</p>
                   </div>
                   {role === 'teacher' && (
-                    <>
-                      <button className="btn btn-warning me-2" onClick={() => handleUpdateModalShow(course)}>Update</button>
-                      <button className="btn btn-danger" onClick={() => deleteCourse(course.id)}>Delete</button>
-                    </>
+                    <div className='d-flex'>
+                      <button className="btn btn-warning me-2" onClick={() => handleUpdateModalShow(course)}>
+                      <FontAwesomeIcon icon={faPenToSquare} />
+                      </button>
+                      <button className="btn btn-danger" onClick={() => deleteCourse(course.id)}>
+                      <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </div>
                   )}
                   {role === 'student' && (
                     <button

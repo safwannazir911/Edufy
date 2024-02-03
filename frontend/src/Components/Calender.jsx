@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import { faCircleExclamation, faTrash } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 
 const Calendar = () => {
   const [events, setEvents] = useState([
-    { "id": 1, "title": "Exam 1", "date": "2024-01-10" },
+    { "id": 1, "title": "Exam 1", "date": "2024-02-4" },
     { "id": 2, "title": "Homework Due", "date": "2024-01-15" },
     { "id": 2, "title": "Homework Due", "date": "2024-01-28" },
     { "id": 3, "title": "Quiz", "date": "2024-01-20" },
@@ -145,7 +145,8 @@ const Calendar = () => {
             className='btn btn-sm btn-danger ms-2'
             onClick={() => deleteEvent(arg.event.id)}
           >
-            Delete
+            <FontAwesomeIcon icon={faTrash} />
+
           </button>
         )}
       </div>
@@ -197,23 +198,28 @@ const Calendar = () => {
 
 
       <div className='mt-4'>
-        <h3>Events</h3>
 
-        <div>
-          <h3>Urgent Events</h3>
-          <ul className="list-group mb-2 ">
-            {urgentEvents.map((event) => (
-              <li key={event.id} className="list-group-item urgrent_events">
-                {event.title} - {event.date}
-                <FontAwesomeIcon icon={faCircleExclamation}
-                style={{float:"right",fontSize:"25px" }} 
-                />         
+        
+        {
+          urgentEvents.length>0 && (
+            <div>
+              <h3>Events</h3>
+              <h3>Urgent Events</h3>
+              <ul className="list-group mb-2 ">
+                {urgentEvents.map((event) => (
+                  <li key={event.id} className="list-group-item urgrent_events">
+                    {event.title} - {event.date}
+                    <FontAwesomeIcon icon={faCircleExclamation}
+                      style={{ float: "right", fontSize: "25px" }}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
 
-              </li>
 
-            ))}
-          </ul>
-        </div>
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView='dayGridMonth'

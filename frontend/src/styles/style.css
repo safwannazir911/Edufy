@@ -203,8 +203,7 @@
     border-top-right-radius: 15px;
     width: 20vw;
     background-color: rgb(240, 245, 255);
-    box-shadow: 22px 22px 52px #f5f5f5,
-        -22px -22px 52px #f6f6f6;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
     min-height: 100vh;
 }
@@ -245,16 +244,50 @@
     background-color: rgb(255, 224, 224);
     padding: 5px;
     text-wrap: wrap;
-    
-}
-.urgrent_events{
-    background-color: #ff6f6f;
-    text-wrap: wrap;   
+
 }
 
-.chat{
+.urgrent_events {
+    background-color: #ff6f6f;
+    text-wrap: wrap;
+}
+
+.chat {
     float: right;
 }
-.chat_li:hover{
+
+.chat_li:hover {
     background-color: aliceblue;
+}
+
+.msg {
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+.msg-right {
+    background-color: aliceblue;
+    border: 1px solid rgb(213, 235, 255);
+}
+
+.msg-left {
+    background-color: rgb(236, 255, 208);
+    border: 1px solid rgb(194, 255, 103);
+}
+
+.event{
+    font-size: 18px;
+}
+.fc a {
+    font-size: 25px;
+    text-decoration: none;
+}
+.contact{
+    background-color: aliceblue;
+    padding: 5px;
+    border-radius: 5px;
+}
+.contact a{
+    text-decoration: none;
 }
