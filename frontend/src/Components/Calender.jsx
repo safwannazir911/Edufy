@@ -154,8 +154,9 @@ const Calendar = () => {
   };
   const getDayFromDate = (dateString) => {
     const date = new Date(dateString);
-    return date.toLocaleString('en-US', { day: 'numeric' });
+    return date.toLocaleString('en-US', { day: '2-digit' });
   };
+  
 
   // Function to get month from date string
   const getMonthFromDate = (dateString) => {
