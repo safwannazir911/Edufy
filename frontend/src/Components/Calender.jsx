@@ -7,8 +7,8 @@ import axios from 'axios';
 
 const Calendar = () => {
   const [events, setEvents] = useState([
-    { "id": 1, "title": "Exam 1", "date": "2024-02-4" },
-    { "id": 2, "title": "Homework Due", "date": "2024-01-15" },
+    { "id": 1, "title": "Exam 1", "date": "2024-02-5" },
+    { "id": 2, "title": "Homework Due", "date": "2024-02-5" },
     { "id": 2, "title": "Homework Due", "date": "2024-01-28" },
     { "id": 3, "title": "Quiz", "date": "2024-01-20" },
     { "id": 4, "title": "Project Presentation", "date": "2024-01-25" },
@@ -152,7 +152,22 @@ const Calendar = () => {
       </div>
     );
   };
+  const getDayFromDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', { day: 'numeric' });
+  };
 
+  // Function to get month from date string
+  const getMonthFromDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', { month: 'short' });
+  };
+
+  // Function to get year from date string
+  const getYearFromDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', { year: 'numeric' });
+  };
 
 
   return (
@@ -199,23 +214,26 @@ const Calendar = () => {
 
       <div className='mt-4'>
 
-        
+
         {
-          urgentEvents.length>0 && (
+          urgentEvents.length > 0 && (
             <div>
-              <h3>Events</h3>
-              <h3>Urgent Events</h3>
-              <ul className="list-group mb-2 ">
+              <h3 className='up_ev'>Upcoming Events</h3>
+              <div className="events-grid mb-2">
                 {urgentEvents.map((event) => (
-                  <li key={event.id} className="list-group-item urgrent_events">
-                    {event.title} - {event.date}
-                    <FontAwesomeIcon icon={faCircleExclamation}
-                      style={{ float: "right", fontSize: "25px" }}
-                    />
-                  </li>
+                  <div key={event.id} className="event-card">
+                    <p className="event-day">{getDayFromDate(event.date)}</p>
+                    <div className="event-details">
+                      <p className="event-month">{getMonthFromDate(event.date)}</p>
+                      <p className="event-year">{getYearFromDate(event.date)}</p>
+                    </div>
+                    <p className="event-title">{event.title}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
+
+
           )
         }
 

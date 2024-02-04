@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@100;200;300;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
-/* * {
-    font-family: Istok Web;
-} */
+* {
+    font-family: 'Roboto', sans-serif;
+}
 
 .root_container {
     display: flex;
@@ -276,18 +276,59 @@
     border: 1px solid rgb(194, 255, 103);
 }
 
-.event{
+.event {
     font-size: 18px;
 }
+
 .fc a {
     font-size: 25px;
     text-decoration: none;
 }
-.contact{
+
+.contact {
     background-color: aliceblue;
     padding: 5px;
     border-radius: 5px;
 }
-.contact a{
+
+.contact a {
     text-decoration: none;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.event-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: aliceblue;
+}
+
+.event-day {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(255, 38, 38);
+}
+
+.event-details {
+    font-size: 14px;
+    color: #888;
+}
+
+.event-title {
+    font-weight: bold;
+    color: rgb(0, 136, 255);
+}
+
+.event-month,
+.event-year {
+    margin: 0;
+}
+
+.up_ev {
+    font-weight: 600;
 }
